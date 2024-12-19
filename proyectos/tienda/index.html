@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOP</title>
+    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <main id="carrito">
+            <div id="carrito__productos">
+            </div>
+        </main>
+
+        <div class="navigator">
+
+            <div class="inicio">
+                <nav>
+                    <ul>
+                        <li><a href="#Productos">Productos</a></li>
+                        <li><a href="#Publicidad">Publicidad</a></li>
+                        <li><a href="#Ofertas">Ofertas</a></li>
+                        <li><a href="#Sobre-nosotros">Sobre nosotros</a></li>
+                        <li><a href="#Siguenos">Siguenos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+
+    <div id="seccionUsuario">
+        <h2>Login</h2>
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Login</button>
+            </div>
+            <div class="registration-container">
+                <h2>Register</h2>
+                <form action="/register" method="POST">
+                    <div class="form-group">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" name="fullname" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Register</button>
+                    </div>
+        </form>
+    </div>
+
+ 
+
+    <fo id="footer">
+        &copy; 2024/25 Marta Marin Lorente
+    </footer>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+    "usuarios": [
+        {
+            "nombre": "Jose",
+            "apellidos": "Piñero",
+            "edad": 30,
+            "telefonos": ["82883872", "993993824"]
+        },
+        {
+            "nombre": "Ramon",
+            "apellidos": "Ramirez",
+            "edad": 23,
+            "telefonos": ["82883872", "993993824"]
+        }
+    ]
+}

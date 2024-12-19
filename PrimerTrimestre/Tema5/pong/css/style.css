@@ -1,0 +1,54 @@
+#circulo {
+    color: palevioletred;
+}
+body {
+    background-color: cadetblue;
+    border: 5px solid burlywood;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+
+}
+
+#pista {
+    background-color: #76d7c4;
+    border: 2px solid #000;
+    position: relative;
+}
+
+#jugador1 {
+    position: absolute;
+    left: -80px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+}
+
+#jugador2 {
+    position: absolute;
+    right: -80px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-shadow: black;
+    text-decoration: dotted;
+    font-size: 20px;
+    font-weight: bold;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+}
+#jugadores{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 15em;
+    color: magenta;
+    text-shadow: #000;
+    text-decoration: dotted;
+}

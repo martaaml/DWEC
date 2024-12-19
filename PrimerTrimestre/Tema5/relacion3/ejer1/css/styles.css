@@ -1,0 +1,35 @@
+body {
+    background-color: cadetblue;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    margin: 0; 
+}
+
+#start, #stop, #reset {
+    background-color: burlywood;
+    border: 3px solid white;
+    color: whitesmoke;
+    padding: 20px 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    margin: 10px; 
+}
+
+#contador {
+    border: 5px solid whitesmoke; 
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: burlywood;
+    padding: 50px;
+    text-align: center;
+}
+
+#reloj {
+    font-size: 120px;
+    color: #FFB6C1; 
+    font-weight: bold;
+}
+

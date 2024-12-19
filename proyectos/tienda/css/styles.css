@@ -1,0 +1,29 @@
+@import url(componentes/footer.css);
+
+
+    ul {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+    }
+    li {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+    span {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+

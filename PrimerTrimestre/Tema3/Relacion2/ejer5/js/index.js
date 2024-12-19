@@ -5,3 +5,4 @@ function paresImpares(){
         return Math.random() * (max - min) + min;
     }
 }
+
