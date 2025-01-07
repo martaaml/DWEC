@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <h1>PRUEBA</h1>
+
+    <div id="app">
+
+        primera prueba de vue
+        {{ message }}
+        <!--if else-->
+
+
+
+
+        <!-- LISTA -->
+        <ol>
+            <li v-for ="nombre in listaNombres">
+                {{ nombre }}
+
+            </li>
+        </ol>
+
+
+
+        <!-- EJEMPLO COMO PELICULAS
+         <div v-for="peliculas in infoPelis">
+            <h1>{{ peliculas.titulo }}</h1>
+            <p> {{ peliculas.plot }}</p>
+         </div>
+    </div>
+    -->
+
+    <!--PARA EVENTOS -->
+    <input type="text" v-model="contenidoDelInput" v-on:click="borrarElemento"(indice)>
+    <button v-on:click="botonPulsado">AÑADIR ELEMENTO</button>
+    <ol>
+        <li v-for ="(nombre,indice) in listaNombres">
+            {{ nombre }}
+
+        </li>
+    </ol>
+
+
+
+
+
+    <!-- SCTIPTS -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
