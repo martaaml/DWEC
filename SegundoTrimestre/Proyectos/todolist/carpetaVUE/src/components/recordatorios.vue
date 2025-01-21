@@ -1,82 +1,153 @@
 <script setup>
-import {computed,onMounted, watch} from 'vue'
-import login from './login.vue';
-import Cabecera from './cabecera.vue';
+//Import Vistas
+import cabecera from './cabecera.vue';
+import usoTarea from './usoTarea.vue';
 import Tarea from './tarea.vue';
-import { useCollection } from 'vuefire'
-import { collection,addDoc, orderBy, query } from 'firebase/firestore'
-import { useFirestore } from 'vuefire'
+
+
+//Import Componentes
+import {computed,onMounted, watch} from 'vue'
+import { useCollection,useFirestore } from 'vuefire'
+import { collection,addDoc, orderBy, query, updateDoc } from 'firebase/firestore'
+import { recordatoriosRef } from '../../firebase';
 const db= useFirestore();
-
-var listaRecordatorios = useCollection(query(collection(db,"recordatorios"),orderBy("nombre")));
-
-
-onMounted(()=>{
- /* const tareasGuardadas = localStorage.getItem('listaRecordatorios');
-  if(tareasGuardadas){
-    listaRecordatorios.value=JSON.parse(tareasGuardadas);
-  }*/
-});
-
-function altaNuevaNota(pos)
-{
-  let NuevoRecordatorio= {
-    titulo: texto,
-    prioridad: 'baja',
-    fecha: 0,
-    completada: false
-  };
-  listaRecordatorios.value.push(NuevoRecordatorio);
-  numeroValor++;
-}
-
-/*Funcion para borrar tarea */
-
-function borrarTarea(pos)
-{
-  listaRecordatorios.value.splice(pos,1);
-  
-}
-/*
-function editarTarea(pos)
-{
-  
-}*/
-
 
 const numeroTareasPendientes = computed (()=>{
 return listaRecordatorios.value.filter(
-tarea=>!tarea.acabada).length;});
-
-/*
-*/
-/*
-const docRef = await addDoc(collection(db, "cities"), {
-  name: "Tokyo",
-  country: "Japan"
-}).then((docRef) => {
-  console.log("Document written with ID: ", docRef.id);
-}).catch((error) => {
-console.error("Error: "+error);
-});*/
+recordatorios=>!recordatorios.completada).length;});
 
 
-/*
-function numeroTareasPendientes(){
-  listaRecordatorios.value.filter(
-(el)=>!el.acabada).length;
-}*/
+//Funcionalidad
+var listaRecordatorios = useCollection(query(collection(db, 'recordatorios'), orderBy('nombre', 'asc')));
+onMounted(() => {});
+
+function altaNuevaNota(texto) {
+  let prioridadNumerica;
+  
+  if (prioridad === 'alta') {
+    prioridadNumerica = 1;
+  } else if (prioridad === 'normal') {
+    prioridadNumerica = 2;
+  } else if (prioridad === 'baja') {
+    prioridadNumerica = 3;
+  }
+
+    let NuevoRecordatorio ={
+    nombre: texto,
+    prioridad: normal,
+    prioridadNumerica: prioridadNumerica,
+    tiempo: 0,
+    completada: false
+  }
+
+
+  addDoc(collection(db, "recordatorios"),NuevoRecordatorio)
+  .then( (docRef) =>{
+    console.log("Error" + docRef.is)
+  })
+  .catch(error =>{
+    console.log("Error" + error);
+  });
+}
+
+function eliminaTareaCompletada(){
+  listaRecordatorios.value.forEach(recordatorios => 
+    {
+      if (recordatorios.completada) 
+      {
+        deleteDoc(doc(db, "recordatorios", recordatorios.id))
+          .then(() => {
+            console.log("Tareas eliminadas correctamente.");
+          })
+          .catch(error => {
+            console.log("Error" + error);
+          });
+      }
+    });
+  }
+
+  function eliminaTodaTareas(){
+    listaRecordatorios.value.forEach(recordatorios =>
+    {
+      deleteDoc(doc(db, "recordatorios", recordatorios.id))
+        .then(() => {
+          console.log("Tareas eliminadas correctamente.");
+        })
+        .catch(error => {
+          console.log("Error" + error);
+        });
+    });
+  }
+
+  function borrarTarea(indice){
+    deleteDoc(doc(db, "recordatorios", listaRecordatorios.value[indice].id))
+    .then( (docRef) =>{
+      console.log("Tarea eliminada correctamente.");
+    })
+    .catch(error =>{
+      console.log("Error" + error);
+    });
+  }
+
+  function editarTarea(indice){
+    updateDoc(doc(db, "recordatorios", listaRecordatorios.value[indice].id),
+      {
+        nombre: listaRecordatorios.value[indice].nombre,
+        prioridad: listaRecordatorios.value[indice].prioridad,
+        tiempo: listaRecordatorios.value[indice].tiempo,
+        completada: listaRecordatorios.value[indice].completada
+      }
+    )
+    .then( (docRef) =>{
+      console.log("Tarea editada correctamente.");
+    })
+    .catch(error =>{
+      console.log("Error" + error);
+    });
+
+  }
+
+  function cambiaPrioridad(indice,prioridad){
+    updateDoc(doc(db, "recordatorios", listaRecordatorios.value[indice].id),
+      {
+        prioridad: prioridad
+      }
+    )
+    .then( (docRef) =>{
+      console.log("Prioridad cambiada correctamente.");
+    })
+    .catch(error =>{
+      console.log("Error" + error);
+    });
+
+  }
+
+  function tachado(indice){
+    updateDoc(doc(db, "recordatorios", listaRecordatorios.value[indice].id),
+      {
+        completada: true
+      }
+    )
+    .then( (docRef) =>{
+      console.log("Tarea completada correctamente.");
+    })
+    .catch(error =>{
+      console.log("Error" + error);
+    });
+
+  }
+
+
 
 </script>
 
 <template>
-  <login></login>
-  <Cabecera v-on:NuevoRecordatorio="altaNuevaNota"></Cabecera>
-  Valor de la variable numero:{{ numero }}
-  {{ numeroTareasPendientes }} tareas pendientes
-  <ResumenTareas></ResumenTareas>
-  <Tarea v-for="(tarea,indice) in listaRecordatorios" :titulo="tarea.nombre" :prioridad="tarea.prioridad" v-on:borrado="borrarTarea(indice)"></Tarea>
-  <Pie></Pie>
+ 
+  <cabecera v-on:NuevoRecordatorio="altaNuevaNota"></cabecera>
+  {{ numeroTareasPendientes }} tareas pendientes de {{ numero }} recordatorios
+  <usoTarea v-on:eliminaTareasCompletadas="eliminaTareasCompletadas" v-on:eliminarTareas="eliminarTareas"></usoTarea>
+  <Tarea v-for="(recordatorios,indice) in listaRecordatorios" :nombre="recordatorios.nombre" :prioridad="recordatorios.prioridad" :tiempo="recordatorios.tiempo" :completada="recordatorios.completada" v-on:borrado="borrarTarea(indice)" v-on:editado="editarTarea(indice)" v-on:cambiaPrioridad="cambiaPrioridad(indice,recordatorios.prioridad)" v-on:tachar="tachado(indice)"></Tarea>
+  <footer></footer>
 </template>
 
 <style scoped>

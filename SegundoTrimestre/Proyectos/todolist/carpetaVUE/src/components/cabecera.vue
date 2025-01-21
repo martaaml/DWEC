@@ -9,11 +9,16 @@ function altaNuevaNota(){
 </script>
 
 <template>
+    <nav>
+        <button><RouterLink to="/recordatorios">Recordatorios</RouterLink></button>
+        <button><RouterLink to="/registro">Registro</RouterLink></button>
+    </nav>
     <h1>CABECERA</h1>
     <input   class="nuevaNota" v-model="textoNuevaNota" placeholder="Escribe una nota..." v-on:keyup.enter="altaNuevaNota">
-    <button type="submit">AÑADIR</button>
+    <button type="submit" v-on:click="altaNuevaNota">AÑADIR</button>
 </template>
 
 <style scoped>
+
 
 </style>

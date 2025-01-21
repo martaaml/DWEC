@@ -27,9 +27,7 @@ function closeSesion()
 </script>
 
 <template>
-
-<p v-if="user">¡Hola!, {{user.displayName}}</p>
-<button v-if="user" @click="closeSesion">Cerrar sesión</button>
-<button v-else @click="login">Iniciar sesión</button>
-<button @click="register">Registrarse</button>
+  <p v-if="user">¡Hola!, {{user.displayName}}</p>
+    <button v-if="user" @click="closeSesion"><RouterLink to="/">Cerrar sesión</RouterLink></button>
+    <button v-else @click="login"><RouterLink to="/">Iniciar sesión</RouterLink></button>
 </template>
