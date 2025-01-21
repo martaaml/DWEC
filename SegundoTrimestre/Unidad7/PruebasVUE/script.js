@@ -14,7 +14,7 @@ const app = Vue.createApp({
         },
         borrarElemento(pos){
             console.log("borrando"+pos)
-            this.listaNombres.
+           // this.listaNombres.
         }
     }
   })
