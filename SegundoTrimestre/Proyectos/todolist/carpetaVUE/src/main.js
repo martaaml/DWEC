@@ -1,9 +1,9 @@
 //import './assets/main.css';
 
-import { VueFire, VueFireAuth } from 'vuefire'
 import { createApp } from 'vue'
 import App from './App.vue'
-import { firebaseApp } from '../firebase'
+import { VueFire, VueFireAuth } from 'vuefire'
+import { firebaseApp } from '../firebase.js'
 import { createWebHistory, createRouter } from 'vue-router'
 
 import landing from './components/landing.vue'
@@ -15,7 +15,7 @@ const routes = [
   { path: '/', component: landing, meta: { requiresAuth: false } },
   {path: '/login', component: login, meta: { requiresAuth: false }},
   {path: '/registro', component: registro, meta: { requiresAuth: false }},
-  { path: '/recordatorios', component:  recordatorios, meta: { requiresAuth: true }}
+  { path: '/recordatorios', component:  recordatorios, meta: { requiresAuth: true }},
 ]
 
 const router = createRouter({
