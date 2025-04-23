@@ -1,0 +1,21 @@
+h1 {
+    color: rgb(5, 5, 5);
+    background-color: black;
+    color: palevioletred;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 100px;
+    border-radius: 10px;
+}
+
+button {
+    margin-top: 2rem;
+    padding: 0.8rem 2rem;
+    border: 2px solid #222;
+    background-color: transparent;
+    border-radius: 8px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
